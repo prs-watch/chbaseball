@@ -1,0 +1,19 @@
+---
+import Layout from '../layouts/Layout.astro'
+import { getArticles, getArticle, type Article } from '../services/microcms'
+import Post from '../components/Post.astro'
+
+export const getStaticPaths = async () => {
+  const articles = await getArticles({ fields: ['id', 'title'] })
+  return articles.contents.map((article: Article) => {
+    return { params: { id: article.id, title: article.title } }
+  })
+}
+
+const { id } = Astro.params
+const article = await getArticle(id)
+---
+
+<Layout title={article.title} category={article.category.name}>
+  <Post title={article.title} content={article.content} />
+</Layout>

@@ -1,0 +1,35 @@
+---
+import { getArticles, type Article } from '../services/microcms'
+
+const { title, content } = Astro.props
+
+// propsは操作禁止なので、Post.astro内で編集出来るコンテンツを準備
+let processedContent = content
+
+// リンク変換準備
+const linkRegex = /\《.*\》/g
+const matches = processedContent.match(linkRegex)
+const articles = await getArticles({ fields: ['id', 'title'] })
+// リンク変換
+if (matches) {
+  matches.forEach((linkStr: string) => {
+    const pageTitle = linkStr.replace('《', '').replace('》', '')
+    const pageInfo = articles.contents.find((article: Article) => {
+      return article.title === pageTitle
+    })
+    const href = pageInfo ? pageInfo.id : '*'
+    // stringによる埋め込みなため、classはベタ書き
+    processedContent = processedContent.replace(
+      linkStr,
+      '<a class="font-normal text-blue-700 no-underline" href="' +
+        href +
+        '">' +
+        pageTitle +
+        '</a>',
+    )
+  })
+}
+---
+
+<p class="text-3xl font-bold bg-blue-200 py-2 mb-5">{title}</p>
+<div class="prose prose-sm" set:html={processedContent} />

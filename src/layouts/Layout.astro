@@ -1,0 +1,104 @@
+---
+import {
+  getArticles,
+  getCategories,
+  type Category,
+  type Article,
+} from '../services/microcms'
+import Link from '../components/primitives/Link.astro'
+
+const { title, category } = Astro.props
+
+// サイドバーとパンくずリストに不要なカテゴリ
+const EXCLUDED_CATEGORIES = ['トップ']
+
+// サイドバー
+type Menu = {
+  [key: string]: { id: string; title: string }[]
+}
+const menu: Menu = {}
+// microCMS情報
+const categories = await getCategories({ fields: ['name'] })
+const articles = await getArticles({ fields: ['id', 'title', 'category'] })
+
+// サイドバー初期化
+categories.contents
+  .filter((category: Category) => !EXCLUDED_CATEGORIES.includes(category.name))
+  .forEach((category: Category) => {
+    menu[category.name] = []
+  })
+
+// サイドバーの中身を構築する
+articles.contents
+  .filter(
+    (article: Article) => !EXCLUDED_CATEGORIES.includes(article.category.name),
+  )
+  .forEach((article: Article) => {
+    const category = article.category.name
+    menu[category].push({
+      id: article.id,
+      title: article.title,
+    })
+  })
+---
+
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" href="favicon.svg" />
+  </head>
+  <body>
+    <div class="grid grid-cols-5 m-5 font-mono">
+      <!-- ヘッダ -->
+      <div class="col-span-5">
+        <span class="text-4xl font-bold text-red-700">
+          中華人民共和国棒球維基</span
+        >
+        {
+          !EXCLUDED_CATEGORIES.includes(category) && (
+            <span class="text-sm">
+              <Link href="/" text="TOP" />/{category}/{title}
+            </span>
+          )
+        }
+      </div>
+      <div class="col-span-5 m-5"><hr /></div>
+      <!-- サイドバー -->
+      <div class="col-span-1">
+        {
+          Object.keys(menu).map((category: string) => (
+            <>
+              <b>{category}</b>
+              <ul class="list-disc pl-5 mb-5">
+                {menu[category].map(
+                  (article: { id: string; title: string }) => (
+                    <li class="prose">
+                      <Link href={article.id} text={article.title} />
+                    </li>
+                  ),
+                )}
+              </ul>
+            </>
+          ))
+        }
+      </div>
+      <!-- メイン -->
+      <div class="col-span-4">
+        <slot />
+      </div>
+      <div class="col-span-5 m-5"><hr /></div>
+      <!-- フッタ -->
+      <div class="col-span-5">
+        <p class="text-xs">Admin: hctaw_srp</p>
+        <p class="text-xs">
+          何かご用がある場合は<Link
+            href="https://x.com/hctaw_srp"
+            text="管理人のXアカウント"
+          />までご連絡下さい。
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

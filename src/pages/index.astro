@@ -1,0 +1,12 @@
+---
+import { getArticle } from '../services/microcms'
+import Layout from '../layouts/Layout.astro'
+import Post from '../components/Post.astro'
+
+// トップページ
+const article = await getArticle('81utd3xd6tnl')
+---
+
+<Layout title={article.title} category={article.category.name}>
+  <Post title={article.title} content={article.content} />
+</Layout>
