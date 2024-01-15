@@ -36,7 +36,7 @@ articles.contents
   .forEach((article: Article) => {
     const category = article.category.name
     menu[category].push({
-      id: article.id,
+      id: "/" + article.id,
       title: article.title,
     })
   })
@@ -47,7 +47,7 @@ articles.contents
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
-    <link rel="icon" href="favicon.svg" />
+    <link rel="icon" href="/favicon.svg" />
   </head>
   <body>
     <div class="grid grid-cols-5 m-5 font-mono">
