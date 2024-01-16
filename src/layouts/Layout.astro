@@ -36,7 +36,7 @@ articles.contents
   .forEach((article: Article) => {
     const category = article.category.name
     menu[category].push({
-      id: "/" + article.id,
+      id: '/' + article.id,
       title: article.title,
     })
   })
@@ -67,6 +67,10 @@ articles.contents
       <div class="col-span-5 m-5"><hr /></div>
       <!-- サイドバー -->
       <div class="col-span-1">
+        <div class="flex flex-auto p-2">
+          <input id="q" class="w-2/3 border border-black" />
+          <button id="search" class="w-1/3 border border-black bg-gray-300">検索</button>
+        </div>
         {
           Object.keys(menu).map((category: string) => (
             <>
@@ -102,3 +106,12 @@ articles.contents
     </div>
   </body>
 </html>
+
+<script lang="ts">
+  // 検索処理
+  const searchButton = document.getElementById('search')
+  searchButton.addEventListener('click', () => {
+    const q = document.getElementById('q').value
+    window.location.href = '/search?q=' + q
+  })
+</script>
