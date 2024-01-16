@@ -1,0 +1,28 @@
+---
+import Link from '../components/primitives/Link.astro'
+import Layout from '../layouts/Layout.astro'
+import { getArticles } from '../services/microcms'
+
+const q = Astro.url.searchParams.get('q')
+const articles = (
+  await getArticles({ q: q ? q : undefined, fields: ['id', 'title'] })
+).contents.map((article: { id: string; title: string }) => {
+  const href = '/' + article.id
+  return {
+    href: href,
+    title: article.title,
+  }
+})
+---
+
+<Layout title="検索一覧" category="検索">
+  <ul class="list-disc pl-5">
+    {
+      articles.map((article: { href: string; title: string }) => (
+        <li class="prose">
+          <Link href={article.href} text={article.title} />
+        </li>
+      ))
+    }
+  </ul>
+</Layout>
