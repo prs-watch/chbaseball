@@ -17,16 +17,19 @@ if (matches) {
     const pageInfo = articles.contents.find((article: Article) => {
       return article.title === pageTitle
     })
-    const href = pageInfo ? pageInfo.id : '*'
-    // stringによる埋め込みなため、classはベタ書き
-    processedContent = processedContent.replace(
-      linkStr,
-      '<a class="font-normal text-blue-700 no-underline" href="/' +
-        href +
-        '">' +
-        pageTitle +
-        '</a>',
-    )
+    // 該当ページが存在する場合リンク化
+    if (pageInfo) {
+      const href = pageInfo.id
+      // stringによる埋め込みなため、classはベタ書き
+      processedContent = processedContent.replace(
+        linkStr,
+        '<a class="font-normal text-blue-700 no-underline" href="/' +
+          href +
+          '">' +
+          pageTitle +
+          '</a>',
+      )
+    }
   })
 }
 ---
