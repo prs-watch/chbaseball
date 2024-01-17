@@ -69,7 +69,7 @@ articles.contents
       <div class="col-span-5 m-5"><hr /></div>
       <!-- サイドバー -->
       <div class="col-span-1">
-        <div class="flex flex-auto p-2">
+        <div class="flex flex-auto p-2 prose prose-sm">
           <input id="q" class="w-2/3 border border-black" aria-label="q" />
           <button id="search" class="w-1/3 border border-black bg-gray-300"
             >検索</button
@@ -78,11 +78,11 @@ articles.contents
         {
           Object.keys(menu).map((category: string) => (
             <>
-              <b>{category}</b>
+              <b class="prose prose-sm">{category}</b>
               <ul class="list-disc pl-5 mb-5">
                 {menu[category].map(
                   (article: { id: string; title: string }) => (
-                    <li class="prose">
+                    <li class="prose prose-sm">
                       <Link href={article.id} text={article.title} />
                     </li>
                   ),
