@@ -47,7 +47,9 @@ articles.contents
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="description" content="中華人民共和国の野球に関するwikiページ" />
     <link rel="icon" href="/favicon.svg" />
+    <title>中華人民共和国棒球維基</title>
   </head>
   <body>
     <div class="grid grid-cols-5 m-5 font-mono">
@@ -68,8 +70,10 @@ articles.contents
       <!-- サイドバー -->
       <div class="col-span-1">
         <div class="flex flex-auto p-2">
-          <input id="q" class="w-2/3 border border-black" />
-          <button id="search" class="w-1/3 border border-black bg-gray-300">検索</button>
+          <input id="q" class="w-2/3 border border-black" aria-label="q" />
+          <button id="search" class="w-1/3 border border-black bg-gray-300"
+            >検索</button
+          >
         </div>
         {
           Object.keys(menu).map((category: string) => (
