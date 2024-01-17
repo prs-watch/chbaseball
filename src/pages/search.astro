@@ -19,7 +19,7 @@ const articles = (
   <ul class="list-disc pl-5">
     {
       articles.map((article: { href: string; title: string }) => (
-        <li class="prose">
+        <li class="prose prose-sm">
           <Link href={article.href} text={article.title} />
         </li>
       ))
