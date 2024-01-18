@@ -1,47 +1,58 @@
-# Astro Starter Kit: Minimal
+# chbaseball
 
-```sh
-npm create astro@latest -- --template minimal
+"chbaseball" is the app repository of 中華人民共和国棒球維基.
+
+## For wiki writers
+
+All of resources at here are unrelated to write wiki contents.
+
+## For wiki developers
+
+Here are some info about "chbaseball" app.
+
+### Wiki structure
+
+![wiki-structure](./wiki-structure.png)
+
+- wiki app
+  - this repository
+    - Node.js
+    - TypeScript
+    - Astro
+    - Tailwind CSS
+- background (CMS)
+  - microCMS
+- CD
+  - Netlify
+- PaaS
+  - Netlify
+
+### App structure
+
+```txt
+public          <- put static resources (icon, robots.txt..)
+  favicon.svg
+src
+  components    <- put component file (.astro)
+    primitives  <- put atomic components
+  layouts       <- put layout definition (.astro)
+  pages         <- put page file (.astro)
+  services      <- put service process (.ts)
+  env.d.ts
+.prettierrc
+astro.config.mjs
+package.json
+tailwind.config.mjs
+tsconfig.json
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/minimal)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/minimal)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/minimal/devcontainer.json)
+### Commands
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- `npm run dev`
+  - start local dev server
+- `npm run build`
+  - build astro resources to `dist`
+- `npm run preview`
+  - preview built archive locally
+- `npm run astro`
+  - run astro command like `astro add` `astro check`
