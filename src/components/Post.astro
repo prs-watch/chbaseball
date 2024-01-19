@@ -2,6 +2,11 @@
 import { getArticles, type Article } from '../services/microcms'
 import { JSDOM } from 'jsdom'
 
+interface Props {
+  title: string
+  content: string
+}
+
 const { title, content } = Astro.props
 
 // propsは操作禁止なので、Post.astro内で編集出来るコンテンツを準備

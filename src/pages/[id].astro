@@ -5,10 +5,16 @@ import Layout from '../layouts/Layout.astro'
 import { getArticles, getArticle, type Article } from '../services/microcms'
 import Post from '../components/Post.astro'
 
+/**
+ * Astro側のgetStaticPathsの具象メソッド.
+ * SSGする際に用意するidの全量を取得する.
+ *
+ * @returns 静的サイトが取り得るパラメータパターン
+ */
 export const getStaticPaths = async () => {
   const articles = await getArticles({ fields: ['id', 'title'] })
   return articles.contents.map((article: Article) => {
-    return { params: { id: article.id, title: article.title } }
+    return { params: { id: article.id } }
   })
 }
 
