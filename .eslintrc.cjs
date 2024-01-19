@@ -1,4 +1,7 @@
 module.exports = {
+  env: {
+    node: true,
+  },
   ignorePatterns: ['*.d.ts'],
   extends: [
     'eslint:recommended',

@@ -58,6 +58,7 @@ const getList = async <T>(
  * 記事の一覧を取得する.
  *
  * @param queries
+ * @returns 記事一覧
  */
 export const getArticles = async (
   queries?: MicroCMSQueries,
@@ -69,6 +70,7 @@ export const getArticles = async (
  * カテゴリの一覧を取得する.
  *
  * @param queries
+ * @returns カテゴリ一覧
  */
 export const getCategories = async (
   queries?: MicroCMSQueries,
@@ -81,6 +83,7 @@ export const getCategories = async (
  *
  * @param contentId
  * @param queries
+ * @returns 文章やカテゴリ、タイトル等の記事詳細
  */
 export const getArticle = async (
   contentId: string,
