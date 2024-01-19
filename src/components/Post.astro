@@ -8,7 +8,7 @@ const { title, content } = Astro.props
 let processedContent = content
 
 // リンク変換
-const linkRegex = /\《.*\》/g
+const linkRegex = /《.*》/g
 const matches = processedContent.match(linkRegex)
 const articles = await getArticles({ fields: ['id', 'title'] })
 if (matches) {

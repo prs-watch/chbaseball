@@ -1,0 +1,17 @@
+name: pre-check
+on:
+  pull_request:
+    branches:
+      - main
+jobs:
+  pre-check:
+    name: pre-check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: install packages
+        run: npm ci
+      - name: format
+        run: npm run format
+      - name: run check
+        run: npm run check
