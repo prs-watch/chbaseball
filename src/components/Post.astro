@@ -1,6 +1,7 @@
 ---
 import { getArticles, type Article } from '../services/microcms'
 import { JSDOM } from 'jsdom'
+import Link from './primitives/Link.astro'
 
 interface Props {
   title: string
@@ -40,7 +41,40 @@ dom.window.document.querySelectorAll('a').forEach((li) => {
   li.classList.add('font-normal', 'text-blue-700', 'no-underline')
 })
 processedContent = dom.serialize()
+
+// ToC
+type TocElement = { text: string; id: string; level: number }
+let tocList: TocElement[] = []
+dom.window.document.querySelectorAll('h1, h2').forEach((h) => {
+  const block: TocElement[] = []
+  const text = h.textContent
+  block.push({
+    text: text ? text : '',
+    id: '#' + h.id,
+    level: h.tagName === 'H1' ? 1 : 2,
+  })
+  tocList = tocList.concat(block)
+})
 ---
 
 <p class="text-3xl font-bold bg-blue-200 py-2 mb-5">{title}</p>
+<ul class="list-disc pl-5 py-5 bg-gray-100">
+  <li class="prose prose-sm">
+    <p>{title}</p>
+  </li>
+  {
+    tocList.map((elm) =>
+      elm.level === 1 ? (
+        <li class="prose prose-sm ml-5">
+          <Link href={elm.id} text={elm.text} />
+        </li>
+      ) : (
+        <li class="prose prose-sm ml-10">
+          <Link href={elm.id} text={elm.text} />
+        </li>
+      ),
+    )
+  }
+</ul>
+<br />
 <div class="prose prose-sm max-w-full" set:html={processedContent} />
