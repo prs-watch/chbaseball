@@ -9,8 +9,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
       - name: install packages
         run: npm ci
+      - name: oudated packages
+        run: npx npm-check-updates -e 2
       - name: format
         run: npm run format
       - name: run check
