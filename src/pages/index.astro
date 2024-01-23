@@ -6,7 +6,7 @@ import Layout from '../layouts/Layout.astro'
 import Post from '../components/Post.astro'
 
 // トップページ
-const article = await getArticle('81utd3xd6tnl')
+const article = await getArticle(import.meta.env.MICROCMS_TOPPAGE_ID)
 ---
 
 <Layout title={article.title} category={article.category.name}>
