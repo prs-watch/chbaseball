@@ -24,5 +24,4 @@ pnpm-debug.log*
 .vscode/
 
 # vscode dev container
-Dockerfile
 .devcontainer

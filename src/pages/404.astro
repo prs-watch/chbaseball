@@ -1,0 +1,13 @@
+---
+export const prerender = true
+
+import Layout from '../layouts/Layout.astro'
+import Post from '../components/Post.astro'
+
+const title = 'エラー（404）'
+const content = '<p>有効なコンテンツではありません。</p>'
+---
+
+<Layout title="404" category="エラー">
+  <Post title={title} content={content} />
+</Layout>

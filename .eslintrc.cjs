@@ -7,6 +7,7 @@ module.exports = {
     'eslint:recommended',
     'plugin:import/typescript',
     'plugin:astro/recommended',
+    'plugin:cypress/recommended',
   ],
   parserOptions: {
     ecmaVersion: 'latest',

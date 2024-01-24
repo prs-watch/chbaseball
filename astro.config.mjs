@@ -7,11 +7,4 @@ export default defineConfig({
   integrations: [tailwind()],
   output: 'server',
   adapter: netlify(),
-  vite: {
-    server: {
-      watch: {
-        usePolling: true,
-      },
-    },
-  },
 })
