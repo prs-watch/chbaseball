@@ -10,4 +10,10 @@ describe('content', () => {
     // サイドバー検査
     cy.get('#menu > ul > li').should('have.length', 2)
   })
+  it('404', () => {
+    // status検査
+    cy.request({ url: '/xxx', failOnStatusCode: false })
+      .its('status')
+      .should('equal', 404)
+  })
 })
