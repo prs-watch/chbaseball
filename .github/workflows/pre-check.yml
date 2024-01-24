@@ -27,3 +27,4 @@ jobs:
           start: npm run dev
           command: npx cypress run
           env: MICROCMS_SERVICE_DOMAIN=${{ secrets.MICROCMS_SERVICE_DOMAIN }},MICROCMS_SERVICE_API_KEY=${{ secrets.MICROCMS_SERVICE_API_KEY }},MICROCMS_TOPPAGE_ID=${{ secrets.MICROCMS_TOPPAGE_ID }}
+          wait-on: 'http://localhost:4321/'
