@@ -23,9 +23,9 @@ jobs:
       - name: cypress
         uses: cypress-io/github-action@v6
         env:
-          CYPRESS_MICROCMS_SERVICE_DOMAIN: ${{ secrets.MICROCMS_SERVICE_DOMAIN }}
-          CYPRESS_MICROCMS_SERVICE_API_KEY: ${{ secrets.MICROCMS_SERVICE_API_KEY }}
-          CYPRESS_MICROCMS_TOPPAGE_ID: ${{ secrets.MICROCMS_TOPPAGE_ID }}
+          MICROCMS_SERVICE_DOMAIN: ${{ secrets.MICROCMS_SERVICE_DOMAIN }}
+          MICROCMS_SERVICE_API_KEY: ${{ secrets.MICROCMS_SERVICE_API_KEY }}
+          MICROCMS_TOPPAGE_ID: ${{ secrets.MICROCMS_TOPPAGE_ID }}
         with:
           browser: chrome
           start: npm run dev
