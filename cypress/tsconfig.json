@@ -1,0 +1,7 @@
+{
+  "compilerOptions": {
+    "types": ["cypress", "@testing-library/cypress"],
+    "outDir": "dist",
+  },
+  "include": ["../node_modules/cypress", "**/*.*"],
+}
