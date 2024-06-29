@@ -1,5 +1,5 @@
 # node.js of stable version
-FROM cypress/browsers:node-18.16.0-chrome-114.0.5735.133-1-ff-114.0.2-edge-114.0.1823.51-1
+FROM cypress/browsers:node-20.14.0-chrome-126.0.6478.114-1-ff-127.0.1-edge-126.0.2592.61-1
 
 RUN apt-get update
 # activate japanese for cypress
